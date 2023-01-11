@@ -15,7 +15,7 @@ class App extends StatelessWidget {
       title: 'َAnaglyph Example',
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.grey[900],
-        primarySwatch: Colors.green,
+        primarySwatch: Colors.grey,
       ),
       home: const AnaglyphViewStyle(
         data: AnaglyphViewStyleData(depth: 4),

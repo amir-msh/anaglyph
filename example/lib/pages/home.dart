@@ -1,5 +1,5 @@
-import 'dart:io';
 import 'package:example/components/arrow_button.dart';
+import 'package:example/utils/getters.dart';
 import 'package:flutter/material.dart';
 import 'package:anaglyph/anaglyph.dart';
 
@@ -12,6 +12,8 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final _pageController = PageController();
+  static const _pageAnimationDuration = Duration(milliseconds: 666);
+  static const _pageAnimationCurve = Curves.decelerate;
 
   @override
   void dispose() {
@@ -29,22 +31,28 @@ class _HomePageState extends State<HomePage> {
             child: PageView.builder(
               controller: _pageController,
               itemCount: 6,
-              itemBuilder: (context, i) => Image.asset(
-                'assets/images/$i.png',
+              itemBuilder: (context, i) => FittedBox(
                 fit: BoxFit.contain,
-                frameBuilder: (_, child, __, ___) {
-                  return AnaglyphView(child: child);
-                },
+                child: Image.asset(
+                  'assets/images/$i.png',
+                  fit: BoxFit.contain,
+                  alignment: Alignment.center,
+                  frameBuilder: (_, child, __, ___) {
+                    return AnaglyphView(
+                      child: child,
+                    );
+                  },
+                ),
               ),
             ),
           ),
-          if (!Platform.isAndroid && !Platform.isIOS) ...[
+          if (isDesktop) ...[
             ArrowButton(
               direction: ArrowDirection.left,
               onPressed: () {
                 _pageController.previousPage(
-                  duration: const Duration(milliseconds: 500),
-                  curve: Curves.easeInOut,
+                  duration: _pageAnimationDuration,
+                  curve: _pageAnimationCurve,
                 );
               },
             ),
@@ -52,8 +60,8 @@ class _HomePageState extends State<HomePage> {
               direction: ArrowDirection.right,
               onPressed: () {
                 _pageController.nextPage(
-                  duration: const Duration(milliseconds: 500),
-                  curve: Curves.easeInOut,
+                  duration: _pageAnimationDuration,
+                  curve: _pageAnimationCurve,
                 );
               },
             ),

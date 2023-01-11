@@ -1,5 +1,7 @@
 import 'package:flutter/rendering.dart';
 
+const double kDefaultDepth = -3;
+
 // true anaglyphs
 const leftChannelTrueAnaglyphColorFilter = ColorFilter.matrix(
   <double>[

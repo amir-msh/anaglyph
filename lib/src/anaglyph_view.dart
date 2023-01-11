@@ -2,8 +2,9 @@ import 'package:anaglyph/src/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-class AnaglyphView extends StatelessWidget {
-  final double opacity;
+// TODO: make it more customizable, modular and scalable
+
+class AnaglyphView extends StatefulWidget {
   final BlendMode blendMode;
   final FilterQuality filterQuality;
   final double depth;
@@ -11,41 +12,42 @@ class AnaglyphView extends StatelessWidget {
   final Widget child;
   const AnaglyphView({
     super.key,
-    this.opacity = 1,
     this.blendMode = BlendMode.plus,
     this.filterQuality = FilterQuality.high,
-    this.depth = -3,
+    this.depth = kDefaultDepth,
     this.enabled = true,
     required this.child,
   });
 
   @override
+  State<AnaglyphView> createState() => _AnaglyphViewState();
+}
+
+class _AnaglyphViewState extends State<AnaglyphView> {
+  @override
   Widget build(BuildContext context) {
-    assert(debugCheckHasMediaQuery(context));
-    if (enabled) {
+    // assert(debugCheckHasAnaglyphViewStyle(context));
+    if (widget.enabled) {
       return _AnaglyphViewRenderObject(
-        key: key,
-        opacity: opacity,
-        blendMode: blendMode,
-        depth: depth,
-        filterQuality: filterQuality,
-        child: child,
+        key: widget.key,
+        blendMode: widget.blendMode,
+        depth: widget.depth,
+        filterQuality: widget.filterQuality,
+        child: widget.child,
       );
     } else {
-      return child;
+      return widget.child;
     }
   }
 }
 
 class _AnaglyphViewRenderObject extends SingleChildRenderObjectWidget {
-  final double opacity;
   final BlendMode blendMode;
   final double depth;
   final FilterQuality filterQuality;
 
   const _AnaglyphViewRenderObject({
     required this.blendMode,
-    required this.opacity,
     required this.depth,
     required this.filterQuality,
     required super.child,
@@ -56,7 +58,6 @@ class _AnaglyphViewRenderObject extends SingleChildRenderObjectWidget {
   RenderObject createRenderObject(final BuildContext context) {
     return RenderAnaglyphView(
       blendMode,
-      opacity,
       depth,
       filterQuality,
     );
@@ -69,7 +70,6 @@ class _AnaglyphViewRenderObject extends SingleChildRenderObjectWidget {
   ) {
     renderObject
       ..blendMode = blendMode
-      ..opacity = opacity
       ..renderDepth = depth
       ..filterQuality = filterQuality;
   }
@@ -79,7 +79,6 @@ class _AnaglyphViewRenderObject extends SingleChildRenderObjectWidget {
     super.debugFillProperties(properties);
     properties
       ..add(EnumProperty<BlendMode>('blendMode', blendMode))
-      ..add(DoubleProperty('opacity', opacity))
       ..add(DoubleProperty('depth', depth))
       ..add(EnumProperty<FilterQuality>('filterQuality', filterQuality));
   }
@@ -87,21 +86,21 @@ class _AnaglyphViewRenderObject extends SingleChildRenderObjectWidget {
 
 class RenderAnaglyphView extends RenderProxyBox {
   BlendMode blendMode;
-  double opacity;
   double renderDepth;
   FilterQuality filterQuality;
 
   RenderAnaglyphView(
     this.blendMode,
-    this.opacity,
     this.renderDepth,
     this.filterQuality,
   );
 
   @override
   void paint(context, offset) {
+    final renderOffset = renderDepth.abs() + 1;
+
     context.canvas.saveLayer(
-      offset & size,
+      offset - Offset(renderOffset, 0) & size,
       Paint()
         ..isAntiAlias = false
         ..colorFilter = leftChannelOptimizedColorFilter
@@ -112,11 +111,11 @@ class RenderAnaglyphView extends RenderProxyBox {
     context.canvas.restore();
 
     context.canvas.saveLayer(
-      offset & size,
+      offset + Offset(renderOffset, 0) & size,
       Paint()
         ..isAntiAlias = false
         ..blendMode = blendMode
-        ..color = Color.fromARGB((opacity * 255).round(), 255, 255, 255)
+        ..color = Colors.white
         ..colorFilter = rightChannelOptimizedColorFilter
         ..filterQuality = filterQuality,
     );
