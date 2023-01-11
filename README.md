@@ -14,7 +14,7 @@ and the Flutter guide for
 ![this is an image](https://drive.google.com/uc?export=download&id=1nq6jLTLju_BhBwU40Fv0Lzw22suSTwi4)
 
 # Anaglyph Package
-Create 3D FLutter applications using Anaglyph package!
+Create 3D Flutter applications using Anaglyph package!
 
 <!-- ## Features
 
