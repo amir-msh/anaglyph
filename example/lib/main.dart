@@ -18,7 +18,11 @@ class App extends StatelessWidget {
         primarySwatch: Colors.grey,
       ),
       home: const AnaglyphViewStyle(
-        data: AnaglyphViewStyleData(depth: 4),
+        data: AnaglyphViewStyleData(
+          depth: -4,
+          stereoPairStyle: AnaglyphStereoPairStyle.optimizedColor(),
+          clipOuters: true,
+        ),
         child: HomePage(),
       ),
     );

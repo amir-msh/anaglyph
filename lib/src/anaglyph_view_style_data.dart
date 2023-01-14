@@ -1,9 +1,8 @@
+import 'package:anaglyph/src/stereo_pair_styles.dart';
 import 'package:flutter/material.dart';
-import './constants.dart';
+import 'constants.dart';
 
-// TODO: add default "AnaglyphStereoPairStyle"s
-// TODO: add enabled
-// TODO: add clip edges
+// TODO: add Matrix4? transformation
 
 class AnaglyphViewStyleData {
   final AnaglyphStereoPairStyle stereoPairStyle;
@@ -11,44 +10,91 @@ class AnaglyphViewStyleData {
   final Duration transitionDuration;
   final Curve transitionCurve;
   final double depth;
-  final bool enabled;
-  // final bool clip; // Outliers, Extrusions
+  final bool clipOuters;
+
   const AnaglyphViewStyleData({
-    this.stereoPairStyle = const AnaglyphStereoPairStyle(
-      leftChannel: AnaglyphStereoChannelStyle(
-        colorFilter: leftChannelOptimizedColorFilter,
-      ),
-      rightChannel: AnaglyphStereoChannelStyle(
-        colorFilter: rightChannelOptimizedColorFilter,
-      ),
-    ),
-    this.filterQuality = FilterQuality.medium,
-    this.transitionDuration = kThemeAnimationDuration,
-    this.transitionCurve = Curves.decelerate,
-    this.depth = 0,
-    this.enabled = true,
+    this.stereoPairStyle = kDefaultStereoPairStyle,
+    this.filterQuality = kDefaultFilterQuality,
+    this.transitionDuration = kDefaultTransitionDuration,
+    this.transitionCurve = kDefaultTransitionCurve,
+    this.depth = kDefaultDepth,
+    this.clipOuters = kDefaultClipOuters,
   });
 
-  AnaglyphViewStyleData copyWith() {
-    return const AnaglyphViewStyleData();
+  AnaglyphViewStyleData copyWith({
+    AnaglyphStereoPairStyle? stereoPairStyle,
+    FilterQuality? filterQuality,
+    Duration? transitionDuration,
+    Curve? transitionCurve,
+    double? depth,
+    bool? clipOuters,
+  }) {
+    return AnaglyphViewStyleData(
+      stereoPairStyle: stereoPairStyle ?? this.stereoPairStyle,
+      filterQuality: filterQuality ?? this.filterQuality,
+      transitionDuration: transitionDuration ?? this.transitionDuration,
+      transitionCurve: transitionCurve ?? this.transitionCurve,
+      depth: depth ?? this.depth,
+      clipOuters: clipOuters ?? this.clipOuters,
+    );
   }
 
   @override
   bool operator ==(Object other) {
     if (other is! AnaglyphViewStyleData) return false;
-    return depth == other.depth;
+    return stereoPairStyle == other.stereoPairStyle &&
+        filterQuality == other.filterQuality &&
+        transitionDuration == other.transitionDuration &&
+        transitionCurve == other.transitionCurve &&
+        depth == other.depth &&
+        clipOuters == other.clipOuters;
   }
 
   @override
-  int get hashCode => Object.hash(depth, filterQuality);
+  int get hashCode {
+    return Object.hash(
+      stereoPairStyle,
+      filterQuality,
+      transitionDuration,
+      transitionCurve,
+      depth,
+      clipOuters,
+    );
+  }
 }
 
 class AnaglyphStereoPairStyle {
   final AnaglyphStereoChannelStyle leftChannel;
   final AnaglyphStereoChannelStyle rightChannel;
+
   const AnaglyphStereoPairStyle({
     required this.leftChannel,
     required this.rightChannel,
+  });
+
+  const AnaglyphStereoPairStyle.trueAnaglyph({
+    this.leftChannel = trueAnaglyphLeftChannelStyle,
+    this.rightChannel = trueAnaglyphRightChannelStyle,
+  });
+
+  const AnaglyphStereoPairStyle.gray({
+    this.leftChannel = grayLeftChannelStyle,
+    this.rightChannel = grayRightChannelStyle,
+  });
+
+  const AnaglyphStereoPairStyle.trueColor({
+    this.leftChannel = trueColorLeftChannelStyle,
+    this.rightChannel = trueColorRightChannelStyle,
+  });
+
+  const AnaglyphStereoPairStyle.halfColor({
+    this.leftChannel = halfColorLeftChannelStyle,
+    this.rightChannel = halfColorRightChannelStyle,
+  });
+
+  const AnaglyphStereoPairStyle.optimizedColor({
+    this.leftChannel = optimizedColorLeftChannelStyle,
+    this.rightChannel = optimizedColorRightChannelStyle,
   });
 
   @override
@@ -61,32 +107,27 @@ class AnaglyphStereoPairStyle {
   @override
   int get hashCode {
     return Object.hash(
-      leftChannel.hashCode,
-      rightChannel.hashCode,
+      leftChannel,
+      rightChannel,
     );
   }
 }
 
 class AnaglyphStereoChannelStyle {
   final ColorFilter colorFilter;
-  final Matrix4? transformation;
+
   const AnaglyphStereoChannelStyle({
     required this.colorFilter,
-    this.transformation,
   });
 
   @override
   bool operator ==(Object other) {
     if (other is! AnaglyphStereoChannelStyle) return false;
-    return colorFilter == other.colorFilter &&
-        transformation == other.transformation;
+    return colorFilter == other.colorFilter;
   }
 
   @override
   int get hashCode {
-    return Object.hash(
-      transformation.hashCode,
-      colorFilter.hashCode,
-    );
+    return colorFilter.hashCode;
   }
 }

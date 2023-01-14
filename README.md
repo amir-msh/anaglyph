@@ -11,10 +11,10 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages).
 -->
 
-![this is an image](https://drive.google.com/uc?export=download&id=1nq6jLTLju_BhBwU40Fv0Lzw22suSTwi4)
+![anaglyph package header](https://user-images.githubusercontent.com/61120718/212234454-8b3105ba-66bc-4bc3-a539-1907417a1cf4.png)
 
 # Anaglyph Package
-Create 3D Flutter applications using Anaglyph package!
+Create awesome 3D Flutter applications using Anaglyph package!
 
 <!-- ## Features
 
