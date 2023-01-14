@@ -4,6 +4,7 @@ import 'constants.dart';
 
 // TODO: add Matrix4? transformation
 
+/// Stores data for [AnaglyphView]
 class AnaglyphViewStyleData {
   final AnaglyphStereoPairStyle stereoPairStyle;
   final FilterQuality filterQuality;
@@ -12,6 +13,12 @@ class AnaglyphViewStyleData {
   final double depth;
   final bool clipOuters;
 
+  /// `stereoPairStyle` : The style of the stereo pair
+  /// `filterQuality` : The quality of the applied filters on the widget
+  /// `transitionDuration` : The animation duration of the style change
+  /// `transitionCurve` : The animation curve of the style change
+  /// `dapth` : Defines the 3D dapth
+  /// `clipOuters` : Clips the outer parts of the anaglyph widget if true (results in a better appearance)
   const AnaglyphViewStyleData({
     this.stereoPairStyle = kDefaultStereoPairStyle,
     this.filterQuality = kDefaultFilterQuality,
@@ -21,6 +28,7 @@ class AnaglyphViewStyleData {
     this.clipOuters = kDefaultClipOuters,
   });
 
+  /// It helps if you want to change some properties of an existing instance
   AnaglyphViewStyleData copyWith({
     AnaglyphStereoPairStyle? stereoPairStyle,
     FilterQuality? filterQuality,
@@ -63,35 +71,46 @@ class AnaglyphViewStyleData {
   }
 }
 
+/// Stores the data of the stereo channels pair
 class AnaglyphStereoPairStyle {
   final AnaglyphStereoChannelStyle leftChannel;
   final AnaglyphStereoChannelStyle rightChannel;
 
+  /// Creates a custom [AnaglyphStereoPairStyle].
   const AnaglyphStereoPairStyle({
     required this.leftChannel,
     required this.rightChannel,
   });
 
+  /// Creates a "true anaglyph" stereo pair style.
   const AnaglyphStereoPairStyle.trueAnaglyph({
     this.leftChannel = trueAnaglyphLeftChannelStyle,
     this.rightChannel = trueAnaglyphRightChannelStyle,
   });
 
+  /// Creates a "gray" stereo pair style.
+  /// It removes the color data
   const AnaglyphStereoPairStyle.gray({
     this.leftChannel = grayLeftChannelStyle,
     this.rightChannel = grayRightChannelStyle,
   });
 
+  /// Creates a "true color" stereo pair style.
+  /// It doesn't remove any color data
   const AnaglyphStereoPairStyle.trueColor({
     this.leftChannel = trueColorLeftChannelStyle,
     this.rightChannel = trueColorRightChannelStyle,
   });
 
+  /// Creates a "half color" stereo pair style.
+  /// It decreases saturation by 50%
   const AnaglyphStereoPairStyle.halfColor({
     this.leftChannel = halfColorLeftChannelStyle,
     this.rightChannel = halfColorRightChannelStyle,
   });
 
+  /// Creates a "optimized color" stereo pair style.
+  /// It decreases the saturation of the disruptive colors, and it often has the best result!
   const AnaglyphStereoPairStyle.optimizedColor({
     this.leftChannel = optimizedColorLeftChannelStyle,
     this.rightChannel = optimizedColorRightChannelStyle,
@@ -113,6 +132,7 @@ class AnaglyphStereoPairStyle {
   }
 }
 
+/// Stores the style of a single anaglyph channel
 class AnaglyphStereoChannelStyle {
   final ColorFilter colorFilter;
 

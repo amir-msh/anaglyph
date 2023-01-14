@@ -4,7 +4,7 @@ import 'package:anaglyph/src/constants.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-/// Creates a 3D widget out of its child
+/// Creates a 3D widget of its child
 class AnaglyphView extends StatefulWidget {
   final AnaglyphStereoPairStyle? stereoPairStyle;
   final FilterQuality? filterQuality;

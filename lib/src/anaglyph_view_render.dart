@@ -2,6 +2,7 @@ import 'package:anaglyph/anaglyph.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
+/// Renders the [AnaglyphView] widget
 class AnaglyphViewRenderObject extends SingleChildRenderObjectWidget {
   final AnaglyphStereoPairStyle stereoPairStyle;
   final FilterQuality filterQuality;
@@ -50,6 +51,7 @@ class AnaglyphViewRenderObject extends SingleChildRenderObjectWidget {
   }
 }
 
+/// Proxy box for [AnaglyphViewRenderObject] widget
 class RenderAnaglyphView extends RenderProxyBox {
   AnaglyphStereoPairStyle _stereoPairStyle;
   FilterQuality _filterQuality;
