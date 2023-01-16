@@ -17,9 +17,11 @@ class App extends StatelessWidget {
         scaffoldBackgroundColor: Colors.grey[900],
         primarySwatch: Colors.grey,
       ),
-      home: const AnaglyphViewStyle(
-        data: AnaglyphViewStyleData(
-          depth: -4,
+      home: const AnimatedAnaglyphStyle(
+        duration: Duration(milliseconds: 1000),
+        curve: Curves.easeOutCubic,
+        data: AnaglyphStyleData(
+          depth: -5,
           stereoPairStyle: AnaglyphStereoPairStyle.optimizedColor(),
           clipOuters: true,
         ),

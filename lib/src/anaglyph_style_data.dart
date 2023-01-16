@@ -5,31 +5,32 @@ import 'constants.dart';
 // TODO: add Matrix4? transformation
 
 /// Stores data for [AnaglyphView]
-class AnaglyphViewStyleData {
+class AnaglyphStyleData {
   final AnaglyphStereoPairStyle stereoPairStyle;
   final FilterQuality filterQuality;
-  final Duration transitionDuration;
-  final Curve transitionCurve;
   final double depth;
   final bool clipOuters;
 
   /// `stereoPairStyle` : The style of the stereo pair
+  ///
   /// `filterQuality` : The quality of the applied filters on the widget
+  ///
   /// `transitionDuration` : The animation duration of the style change
+  ///
   /// `transitionCurve` : The animation curve of the style change
+  ///
   /// `dapth` : Defines the 3D dapth
+  ///
   /// `clipOuters` : Clips the outer parts of the anaglyph widget if true (results in a better appearance)
-  const AnaglyphViewStyleData({
+  const AnaglyphStyleData({
     this.stereoPairStyle = kDefaultStereoPairStyle,
     this.filterQuality = kDefaultFilterQuality,
-    this.transitionDuration = kDefaultTransitionDuration,
-    this.transitionCurve = kDefaultTransitionCurve,
     this.depth = kDefaultDepth,
     this.clipOuters = kDefaultClipOuters,
   });
 
   /// It helps if you want to change some properties of an existing instance
-  AnaglyphViewStyleData copyWith({
+  AnaglyphStyleData copyWith({
     AnaglyphStereoPairStyle? stereoPairStyle,
     FilterQuality? filterQuality,
     Duration? transitionDuration,
@@ -37,23 +38,35 @@ class AnaglyphViewStyleData {
     double? depth,
     bool? clipOuters,
   }) {
-    return AnaglyphViewStyleData(
+    return AnaglyphStyleData(
       stereoPairStyle: stereoPairStyle ?? this.stereoPairStyle,
       filterQuality: filterQuality ?? this.filterQuality,
-      transitionDuration: transitionDuration ?? this.transitionDuration,
-      transitionCurve: transitionCurve ?? this.transitionCurve,
       depth: depth ?? this.depth,
       clipOuters: clipOuters ?? this.clipOuters,
     );
   }
 
+  static AnaglyphStyleData lerp(
+    AnaglyphStyleData a,
+    AnaglyphStyleData b,
+    double t,
+  ) {
+    return AnaglyphStyleData(
+      clipOuters: b.clipOuters,
+      depth: Tween<double>(
+        begin: a.depth,
+        end: b.depth,
+      ).transform(t),
+      filterQuality: t < 0.5 ? a.filterQuality : b.filterQuality,
+      stereoPairStyle: b.stereoPairStyle,
+    );
+  }
+
   @override
   bool operator ==(Object other) {
-    if (other is! AnaglyphViewStyleData) return false;
+    if (other is! AnaglyphStyleData) return false;
     return stereoPairStyle == other.stereoPairStyle &&
         filterQuality == other.filterQuality &&
-        transitionDuration == other.transitionDuration &&
-        transitionCurve == other.transitionCurve &&
         depth == other.depth &&
         clipOuters == other.clipOuters;
   }
@@ -63,15 +76,13 @@ class AnaglyphViewStyleData {
     return Object.hash(
       stereoPairStyle,
       filterQuality,
-      transitionDuration,
-      transitionCurve,
       depth,
       clipOuters,
     );
   }
 }
 
-/// Stores the data of the stereo channels pair
+/// Stores the data of the stereo channel pairs
 class AnaglyphStereoPairStyle {
   final AnaglyphStereoChannelStyle leftChannel;
   final AnaglyphStereoChannelStyle rightChannel;
@@ -116,6 +127,25 @@ class AnaglyphStereoPairStyle {
     this.rightChannel = optimizedColorRightChannelStyle,
   });
 
+  static AnaglyphStereoPairStyle lerp(
+    AnaglyphStereoPairStyle a,
+    AnaglyphStereoPairStyle b,
+    double t,
+  ) {
+    return AnaglyphStereoPairStyle(
+      leftChannel: AnaglyphStereoChannelStyle.lerp(
+        a.leftChannel,
+        b.leftChannel,
+        t,
+      ),
+      rightChannel: AnaglyphStereoChannelStyle.lerp(
+        a.rightChannel,
+        b.rightChannel,
+        t,
+      ),
+    );
+  }
+
   @override
   bool operator ==(Object other) {
     if (other is! AnaglyphStereoPairStyle) return false;
@@ -139,6 +169,16 @@ class AnaglyphStereoChannelStyle {
   const AnaglyphStereoChannelStyle({
     required this.colorFilter,
   });
+
+  static AnaglyphStereoChannelStyle lerp(
+    AnaglyphStereoChannelStyle a,
+    AnaglyphStereoChannelStyle b,
+    double t,
+  ) {
+    return AnaglyphStereoChannelStyle(
+      colorFilter: t < 0.5 ? a.colorFilter : b.colorFilter,
+    );
+  }
 
   @override
   bool operator ==(Object other) {

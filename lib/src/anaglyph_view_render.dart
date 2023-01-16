@@ -1,6 +1,6 @@
-import 'package:anaglyph/anaglyph.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:anaglyph/anaglyph.dart';
 
 /// Renders the [AnaglyphView] widget
 class AnaglyphViewRenderObject extends SingleChildRenderObjectWidget {
@@ -70,27 +70,30 @@ class RenderAnaglyphView extends RenderProxyBox {
 
   set stereoPairStyle(AnaglyphStereoPairStyle newValue) {
     _stereoPairStyle = newValue;
+    markNeedsPaint();
   }
 
   set filterQuality(FilterQuality newValue) {
     _filterQuality = newValue;
+    markNeedsPaint();
   }
 
   set anaglyphDepth(double newValue) {
     _anaglyphDepth = newValue;
+    markNeedsPaint();
   }
 
   set clipOuters(bool newValue) {
     _clipOuters = newValue;
+    markNeedsPaint();
   }
 
   @override
   void paint(context, offset) {
-    final renderOffset = _anaglyphDepth.abs() + 1;
-    final offsetChange = _clipOuters ? Offset(renderOffset, 0) : Offset.zero;
+    final offsetChange = _clipOuters ? Offset(-_anaglyphDepth, 0) : Offset.zero;
 
     context.canvas.saveLayer(
-      offset - offsetChange & size,
+      (offset - offsetChange) & size,
       Paint()
         ..isAntiAlias = false
         ..colorFilter = _stereoPairStyle.leftChannel.colorFilter
@@ -101,7 +104,7 @@ class RenderAnaglyphView extends RenderProxyBox {
     context.canvas.restore();
 
     context.canvas.saveLayer(
-      offset + offsetChange & size,
+      (offset + offsetChange) & size,
       Paint()
         ..isAntiAlias = false
         ..blendMode = BlendMode.plus

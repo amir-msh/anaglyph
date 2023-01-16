@@ -23,7 +23,7 @@ const trueAnaglyphRightChannelStyle = AnaglyphStereoChannelStyle(
   ),
 );
 
-// Gray
+// Gray (mono)
 const grayLeftChannelStyle = AnaglyphStereoChannelStyle(
   colorFilter: ColorFilter.matrix(
     <double>[
@@ -110,26 +110,3 @@ const optimizedColorRightChannelStyle = AnaglyphStereoChannelStyle(
     ],
   ),
 );
-
-// var matrices = {
-//   'true': [
-//     [0.299, 0.587, 0.114, 0, 0, 0, 0, 0, 0],
-//     [0, 0, 0, 0, 0, 0, 0.299, 0.587, 0.114]
-//   ],
-//   'mono': [
-//     [0.299, 0.587, 0.114, 0, 0, 0, 0, 0, 0],
-//     [0, 0, 0, 0.299, 0.587, 0.114, 0.299, 0.587, 0.114]
-//   ],
-//   'color': [
-//     [1, 0, 0, 0, 0, 0, 0, 0, 0],
-//     [0, 0, 0, 0, 1, 0, 0, 0, 1]
-//   ],
-//   'halfcolor': [
-//     [0.299, 0.587, 0.114, 0, 0, 0, 0, 0, 0],
-//     [0, 0, 0, 0, 1, 0, 0, 0, 1]
-//   ],
-//   'optimized': [
-//     [0, 0.7, 0.3, 0, 0, 0, 0, 0, 0],
-//     [0, 0, 0, 0, 1, 0, 0, 0, 1]
-//   ],
-// };
