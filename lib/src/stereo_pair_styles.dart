@@ -24,7 +24,7 @@ const trueAnaglyphRightChannelStyle = AnaglyphStereoChannelStyle(
 );
 
 // Gray (mono)
-const grayLeftChannelStyle = AnaglyphStereoChannelStyle(
+const monoLeftChannelStyle = AnaglyphStereoChannelStyle(
   colorFilter: ColorFilter.matrix(
     <double>[
       0.299, 0.587, 0.113, 0, 0, //
@@ -34,7 +34,7 @@ const grayLeftChannelStyle = AnaglyphStereoChannelStyle(
     ],
   ),
 );
-const grayRightChannelStyle = AnaglyphStereoChannelStyle(
+const monoRightChannelStyle = AnaglyphStereoChannelStyle(
   colorFilter: ColorFilter.matrix(
     <double>[
       0, 0, 0, 0, 0, //

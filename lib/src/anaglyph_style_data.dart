@@ -99,11 +99,11 @@ class AnaglyphStereoPairStyle {
     this.rightChannel = trueAnaglyphRightChannelStyle,
   });
 
-  /// Creates a "gray" stereo pair style.
+  /// Creates a "mono" stereo pair style.
   /// It removes the color data
-  const AnaglyphStereoPairStyle.gray({
-    this.leftChannel = grayLeftChannelStyle,
-    this.rightChannel = grayRightChannelStyle,
+  const AnaglyphStereoPairStyle.mono({
+    this.leftChannel = monoLeftChannelStyle,
+    this.rightChannel = monoRightChannelStyle,
   });
 
   /// Creates a "true color" stereo pair style.

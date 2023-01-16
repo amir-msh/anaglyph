@@ -10,8 +10,8 @@ void main() {
       final textKey = UniqueKey();
       await tester.pumpWidget(
         MaterialApp(
-          home: AnaglyphViewStyle(
-            data: const AnaglyphViewStyleData(),
+          home: AnaglyphStyle(
+            data: const AnaglyphStyleData(),
             child: Scaffold(
               body: Center(
                 child: Builder(
