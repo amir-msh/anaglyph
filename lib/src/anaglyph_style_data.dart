@@ -2,32 +2,31 @@ import 'package:anaglyph/src/stereo_pair_styles.dart';
 import 'package:flutter/material.dart';
 import 'constants.dart';
 
-// TODO: add Matrix4? transformation
+// TODO: add Matrix4 transformation
 
-/// Stores data for [AnaglyphView]
+/// Stores an anaglyph style
 class AnaglyphStyleData {
-  final AnaglyphStereoPairStyle stereoPairStyle;
-  final FilterQuality filterQuality;
-  final double depth;
-  final bool clipOuters;
-
-  /// `stereoPairStyle` : The style of the stereo pair
+  /// {@template anaglyph.styledata.args}
+  /// `stereoPairStyle` : The style of the stereo pair.
   ///
-  /// `filterQuality` : The quality of the applied filters on the widget
+  /// `filterQuality` : The quality of the applied filters on the widget.
   ///
-  /// `transitionDuration` : The animation duration of the style change
+  /// `dapth` : Determines the 3D dapth.
   ///
-  /// `transitionCurve` : The animation curve of the style change
-  ///
-  /// `dapth` : Defines the 3D dapth
-  ///
-  /// `clipOuters` : Clips the outer parts of the anaglyph widget if true (results in a better appearance)
+  /// `clipOuters` : Clips the outer parts of the anaglyph widget if true
+  /// (results in a better 3D appearance).
+  /// {@endtemplate}
   const AnaglyphStyleData({
     this.stereoPairStyle = kDefaultStereoPairStyle,
     this.filterQuality = kDefaultFilterQuality,
     this.depth = kDefaultDepth,
     this.clipOuters = kDefaultClipOuters,
   });
+
+  final AnaglyphStereoPairStyle stereoPairStyle;
+  final FilterQuality filterQuality;
+  final double depth;
+  final bool clipOuters;
 
   /// It helps if you want to change some properties of an existing instance
   AnaglyphStyleData copyWith({
@@ -46,6 +45,12 @@ class AnaglyphStyleData {
     );
   }
 
+  /// Linearly interpolate between two `AnaglyphStyleData`s.
+  ///
+  /// `a` and `b` are the `AnaglyphStyleData` instances you want to
+  /// interpolate between.
+  ///
+  /// The `t` argument represents position on the timeline,
   static AnaglyphStyleData lerp(
     AnaglyphStyleData a,
     AnaglyphStyleData b,
@@ -82,7 +87,7 @@ class AnaglyphStyleData {
   }
 }
 
-/// Stores the data of the stereo channel pairs
+/// Stores the data of a stereo channel pair.
 class AnaglyphStereoPairStyle {
   final AnaglyphStereoChannelStyle leftChannel;
   final AnaglyphStereoChannelStyle rightChannel;
@@ -100,28 +105,34 @@ class AnaglyphStereoPairStyle {
   });
 
   /// Creates a "mono" stereo pair style.
-  /// It removes the color data
+  ///
+  /// It completely removes the color data, resulting a grayscale image.
   const AnaglyphStereoPairStyle.mono({
     this.leftChannel = monoLeftChannelStyle,
     this.rightChannel = monoRightChannelStyle,
   });
 
   /// Creates a "true color" stereo pair style.
-  /// It doesn't remove any color data
+  ///
+  /// It does not remove any color data, so the true color is displayed.
+  ///
+  /// In some images that have reddish colors, it causes double vision.
   const AnaglyphStereoPairStyle.trueColor({
     this.leftChannel = trueColorLeftChannelStyle,
     this.rightChannel = trueColorRightChannelStyle,
   });
 
   /// Creates a "half color" stereo pair style.
-  /// It decreases saturation by 50%
+  ///
+  /// It decreases reddish colors' saturation to reduce double vision.
   const AnaglyphStereoPairStyle.halfColor({
     this.leftChannel = halfColorLeftChannelStyle,
     this.rightChannel = halfColorRightChannelStyle,
   });
 
-  /// Creates a "optimized color" stereo pair style.
-  /// It decreases the saturation of the disruptive colors, and it often has the best result!
+  /// Creates an "optimized color" stereo pair style.
+  ///
+  /// It reduces the saturation of destructive colors and often has the best results!
   const AnaglyphStereoPairStyle.optimizedColor({
     this.leftChannel = optimizedColorLeftChannelStyle,
     this.rightChannel = optimizedColorRightChannelStyle,
@@ -166,10 +177,21 @@ class AnaglyphStereoPairStyle {
 class AnaglyphStereoChannelStyle {
   final ColorFilter colorFilter;
 
+  /// Creates an `AnaglyphStereoChannelStyle`.
+  ///
+  /// It determines how should an anaglyph channel look.
+  ///
+  /// `colorFilter` : The color filter that'll be applied to the channel.
   const AnaglyphStereoChannelStyle({
     required this.colorFilter,
   });
 
+  /// Linearly interpolate between two `AnaglyphStereoChannelStyle`s.
+  ///
+  /// `a` and `b` are the `AnaglyphStereoChannelStyle` instances you want to
+  /// interpolate between.
+  ///
+  /// The `t` argument represents position on the timeline,
   static AnaglyphStereoChannelStyle lerp(
     AnaglyphStereoChannelStyle a,
     AnaglyphStereoChannelStyle b,

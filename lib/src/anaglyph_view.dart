@@ -4,13 +4,9 @@ import 'package:anaglyph/src/constants.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-/// Creates a 3D widget of its child
 class AnaglyphView extends StatelessWidget {
-  final AnaglyphStereoPairStyle? stereoPairStyle;
-  final FilterQuality? filterQuality;
-  final double? depth;
-  final bool? clipOuters;
-  final Widget child;
+  /// Creates a 3D widget of its child.
+  /// {@macro anaglyph.styledata.args}
   const AnaglyphView({
     super.key,
     this.stereoPairStyle,
@@ -19,6 +15,12 @@ class AnaglyphView extends StatelessWidget {
     this.clipOuters,
     required this.child,
   });
+
+  final AnaglyphStereoPairStyle? stereoPairStyle;
+  final FilterQuality? filterQuality;
+  final double? depth;
+  final bool? clipOuters;
+  final Widget child;
 
   @override
   Widget build(BuildContext context) {

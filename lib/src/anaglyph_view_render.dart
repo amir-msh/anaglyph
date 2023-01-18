@@ -2,13 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:anaglyph/anaglyph.dart';
 
-/// Renders the [AnaglyphView] widget
+/// Renders the [AnaglyphView] widget.
 class AnaglyphViewRenderObject extends SingleChildRenderObjectWidget {
-  final AnaglyphStereoPairStyle stereoPairStyle;
-  final FilterQuality filterQuality;
-  final double depth;
-  final bool clipOuters;
-
   const AnaglyphViewRenderObject({
     required super.key,
     required this.stereoPairStyle,
@@ -17,6 +12,11 @@ class AnaglyphViewRenderObject extends SingleChildRenderObjectWidget {
     required this.clipOuters,
     required super.child,
   });
+
+  final AnaglyphStereoPairStyle stereoPairStyle;
+  final FilterQuality filterQuality;
+  final double depth;
+  final bool clipOuters;
 
   @override
   RenderObject createRenderObject(final BuildContext context) {

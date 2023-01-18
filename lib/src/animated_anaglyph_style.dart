@@ -1,16 +1,17 @@
 import 'package:anaglyph/anaglyph.dart';
-import 'package:anaglyph/src/anaglyph_style_tween.dart';
+import 'package:anaglyph/src/anaglyph_style_data_tween.dart';
 import 'package:anaglyph/src/constants.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class AnimatedAnaglyphStyle extends ImplicitlyAnimatedWidget {
-  /// Creates an animated AnaglyphStyle.
+  /// Creates an animated [AnaglyphStyle].
   ///
-  /// By default, the AnaglyphStyle transition uses a decelerate curve ([kDefaultTransitionCurve]). The [data] and
-  /// [child] arguments must not be null.
+  /// By default, it uses a decelerate curve. The [data] and [child] arguments
+  /// must not be null.
   ///
   /// `curve` : the animation curve that will be used for the transition animation.
+  ///
   /// `duration` : the duration of the transition animation.
   const AnimatedAnaglyphStyle({
     super.key,
@@ -21,11 +22,9 @@ class AnimatedAnaglyphStyle extends ImplicitlyAnimatedWidget {
     required this.child,
   });
 
-  /// Specifies the style of the anaglyph
+  /// Specifies the style of anaglyph
   final AnaglyphStyleData data;
 
-  /// The widget below this widget in the tree.
-  ///
   /// {@macro flutter.widgets.ProxyWidget.child}
   final Widget child;
 
