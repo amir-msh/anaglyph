@@ -46,7 +46,7 @@ AnaglyphView(
 
 #
 
-If you want to wrap the widgets which have a transparent background (e.g., Text, Icon, FlutterLogo) in the `AnaglyphView`, make sure `clipOuters` is false :
+If you want to wrap the widgets which have a transparent background (e.g., Text, Icon, FlutterLogo) in `AnaglyphView`, make sure `clipOuters` is false :
 
 ```dart
 AnaglyphView(
