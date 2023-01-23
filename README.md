@@ -58,7 +58,6 @@ AnaglyphView(
 
 <img src="https://raw.githubusercontent.com/amir-msh/anaglyph/main/screenshots/flutter-logo-readme-example-min.png" alt="Flutter logo output" height="300" width="auto">
      
-------
 
 ## Donation
 
