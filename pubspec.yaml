@@ -5,9 +5,6 @@ homepage: https://github.com/amir-msh/anaglyph
 repository: https://github.com/amir-msh/anaglyph
 issue_tracker: https://github.com/amir-msh/anaglyph/issues
 
-funding:
-  - https://www.buymeacoffee.com/amirmsh
-
 environment:
   sdk: '>=2.18.6 <3.0.0' # '>=2.18.6 <3.0.0'
   flutter: ">=1.17.0" # ">=1.17.0"
@@ -31,4 +28,20 @@ platforms:
   web:
   windows:
 
-# TODO: add screenshots
+funding:
+  - https://www.buymeacoffee.com/amirmsh
+
+screenshots:
+  - description: '3D image No.1'
+    path: screenshots/Screenshot_1674442485-min.png
+  - description: '3D image No.2'
+    path: screenshots/Screenshot_1674442480-min.png
+  - description: '3D image No.3'
+    path: screenshots/Screenshot_1674442418-min.png
+  - description: '3D image No.4'
+    path: screenshots/Screenshot_1674442402-min.png
+  - description: '3D image on windows'
+    path: screenshots/nebula-readme-example-min.png
+  - description: '3D FlutterLogo on windows'
+    path: screenshots/flutter-logo-readme-example-min.png
+
