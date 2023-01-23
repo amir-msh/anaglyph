@@ -64,4 +64,4 @@ AnaglyphView(
 
 If you like this package, I'll be happy to receive your generous donations!😃     
 
-<a href="https://www.buymeacoffee.com/amirmsh" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="box-shadow: 0px 1px 9px brown" height="auto" width="200"></a>
+<a href="https://www.buymeacoffee.com/amirmsh" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="box-shadow: 0px 1px 9px brown; border-radius:10px;" height="auto" width="200"></a>
