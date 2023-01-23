@@ -2,7 +2,7 @@
 [The nebula image's credit: NASA, ESA, CSA, and STScI](https://www.nasa.gov/image-feature/goddard/2022/nasa-s-webb-reveals-cosmic-cliffs-glittering-landscape-of-star-birth)      
 
 # Anaglyph Package
- 
+
 Create awesome 3D Flutter applications using the Anaglyph package!
 
 -------
@@ -42,6 +42,10 @@ AnaglyphView(
 ),
 ```
 
+<img src="https://raw.githubusercontent.com/amir-msh/anaglyph/main/screenshots/nebula-readme-example-min.png" alt="Flutter logo output" height="300" width="auto">
+
+#
+
 If you want to wrap the widgets which have a transparent background (e.g., Text, Icon, FlutterLogo) in the `AnaglyphView`, make sure `clipOuters` is false :
 
 ```dart
@@ -51,8 +55,10 @@ AnaglyphView(
     child: FlutterLogo(size: 250),
 ),
 ```
+
+<img src="https://raw.githubusercontent.com/amir-msh/anaglyph/main/screenshots/flutter-logo-readme-example-min.png" alt="Flutter logo output" height="300" width="auto">
      
--------
+------
 
 ## Donation
 
