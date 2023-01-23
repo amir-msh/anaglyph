@@ -18,8 +18,13 @@ void main() {
                   builder: (context) {
                     return AnaglyphView(
                       key: anaglyphKey,
+                      clipOuters: false,
                       child: Text(
                         '3D TEXT',
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 36,
+                        ),
                         key: textKey,
                       ),
                     );
