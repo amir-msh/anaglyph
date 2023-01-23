@@ -2,8 +2,6 @@ import 'package:anaglyph/src/stereo_pair_styles.dart';
 import 'package:flutter/material.dart';
 import 'constants.dart';
 
-// TODO: add Matrix4 transformation
-
 /// Stores an anaglyph style
 class AnaglyphStyleData {
   /// {@template anaglyph.styledata.args}
@@ -50,14 +48,16 @@ class AnaglyphStyleData {
   /// `a` and `b` are the `AnaglyphStyleData` instances you want to
   /// interpolate between.
   ///
-  /// The `t` argument represents position on the timeline,
+  /// The `t` argument represents position on the timeline.
+  ///
+  /// `depth` is the only value that is accurately interpolated currently.
   static AnaglyphStyleData lerp(
     AnaglyphStyleData a,
     AnaglyphStyleData b,
     double t,
   ) {
     return AnaglyphStyleData(
-      clipOuters: b.clipOuters,
+      clipOuters: t < 0.5 ? a.clipOuters : b.clipOuters,
       depth: Tween<double>(
         begin: a.depth,
         end: b.depth,
@@ -89,9 +89,6 @@ class AnaglyphStyleData {
 
 /// Stores the data of a stereo channel pair.
 class AnaglyphStereoPairStyle {
-  final AnaglyphStereoChannelStyle leftChannel;
-  final AnaglyphStereoChannelStyle rightChannel;
-
   /// Creates a custom [AnaglyphStereoPairStyle].
   const AnaglyphStereoPairStyle({
     required this.leftChannel,
@@ -157,6 +154,12 @@ class AnaglyphStereoPairStyle {
     );
   }
 
+  /// Defines the style of the left channel.
+  final AnaglyphStereoChannelStyle leftChannel;
+
+  /// Defines the style of the right channel
+  final AnaglyphStereoChannelStyle rightChannel;
+
   @override
   bool operator ==(Object other) {
     if (other is! AnaglyphStereoPairStyle) return false;
@@ -175,8 +178,6 @@ class AnaglyphStereoPairStyle {
 
 /// Stores the style of a single anaglyph channel
 class AnaglyphStereoChannelStyle {
-  final ColorFilter colorFilter;
-
   /// Creates an `AnaglyphStereoChannelStyle`.
   ///
   /// It determines how should an anaglyph channel look.
@@ -185,6 +186,9 @@ class AnaglyphStereoChannelStyle {
   const AnaglyphStereoChannelStyle({
     required this.colorFilter,
   });
+
+  /// The color filter that'll be applied to the channel.
+  final ColorFilter colorFilter;
 
   /// Linearly interpolate between two `AnaglyphStereoChannelStyle`s.
   ///
