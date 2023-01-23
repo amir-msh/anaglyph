@@ -1,7 +1,13 @@
+import 'dart:io' show Platform;
+import 'package:flutter/material.dart';
 import 'package:anaglyph/anaglyph.dart';
 import 'package:example/components/arrow_button.dart';
-import 'package:example/utils/getters.dart';
-import 'package:flutter/material.dart';
+
+bool get isDesktop =>
+    Platform.isLinux ||
+    Platform.isFuchsia ||
+    Platform.isWindows ||
+    Platform.isMacOS;
 
 void main() => runApp(const App());
 
@@ -20,7 +26,8 @@ class App extends StatelessWidget {
         duration: const Duration(milliseconds: 900),
         curve: Curves.easeOutCubic,
         data: AnaglyphStyleData(
-          depth: isDesktop ? -5 : -10,
+          clipOuters: true,
+          depth: isDesktop ? -8 : -12,
         ),
         child: const HomePage(),
       ),
@@ -55,19 +62,16 @@ class _HomePageState extends State<HomePage> {
           Positioned.fill(
             child: PageView.builder(
               controller: _pageController,
-              itemCount: 6,
+              itemCount: 5,
               itemBuilder: (context, i) {
                 return FittedBox(
                   fit: BoxFit.contain,
-                  child: Image.asset(
-                    'assets/images/$i.png',
-                    fit: BoxFit.contain,
-                    alignment: Alignment.center,
-                    frameBuilder: (_, child, __, ___) {
-                      return AnaglyphView(
-                        child: child,
-                      );
-                    },
+                  child: AnaglyphView(
+                    child: Image.asset(
+                      'assets/images/$i.png',
+                      fit: BoxFit.contain,
+                      alignment: Alignment.center,
+                    ),
                   ),
                 );
               },

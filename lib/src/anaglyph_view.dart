@@ -39,7 +39,7 @@ class AnaglyphView extends StatelessWidget {
         AnaglyphStyle.of(context)?.data.clipOuters ??
         kDefaultClipOuters;
 
-    if (depth == 0.0) return child;
+    // if (depth == 0.0) return child;
 
     return AnaglyphViewRenderObject(
       key: super.key,

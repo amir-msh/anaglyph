@@ -90,7 +90,9 @@ class RenderAnaglyphView extends RenderProxyBox {
 
   @override
   void paint(context, offset) {
-    final offsetChange = _clipOuters ? Offset(-_anaglyphDepth, 0) : Offset.zero;
+    final halfDepth = _anaglyphDepth / 2;
+    final offsetChange =
+        _clipOuters ? Offset(-halfDepth, 0) : Offset(halfDepth, 0);
 
     context.canvas.saveLayer(
       (offset - offsetChange) & size,
@@ -100,7 +102,7 @@ class RenderAnaglyphView extends RenderProxyBox {
         ..filterQuality = _filterQuality,
     );
 
-    super.paint(context, offset + Offset(-_anaglyphDepth, 0));
+    super.paint(context, offset + Offset(-halfDepth, 0));
     context.canvas.restore();
 
     context.canvas.saveLayer(
@@ -113,7 +115,7 @@ class RenderAnaglyphView extends RenderProxyBox {
         ..filterQuality = _filterQuality,
     );
 
-    super.paint(context, offset + Offset(_anaglyphDepth, 0));
+    super.paint(context, offset + Offset(halfDepth, 0));
     context.canvas.restore();
   }
 }

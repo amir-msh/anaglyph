@@ -28,13 +28,34 @@ In other words, the Anaglyph method is an easy and low-cost way to create 3D ima
 - Use `AnaglyphStyle` to set anaglyph style for subtrees.     
     
 - Use `AnimatedAnaglyphStyle` to apply anaglyph style changes with a custom animation.      
+
+## Basic Usage
+
+You can use any other widget instead of `Image.network`, but those widgets which don't contain any color but black, can't become 3D!
+
+```dart
+AnaglyphView(
+    depth: -7,
+    child: Image.network(
+        'https://www.nasa.gov/sites/default/files/thumbnails/image/pillars_of_creation.jpg',
+    ),
+),
+```
+
+If you want to wrap the widgets which have a transparent background (e.g., Text, Icon, FlutterLogo) in the `AnaglyphView`, make sure `clipOuters` is false :
+
+```dart
+AnaglyphView(
+    depth: -4,
+    clipOuters: false,
+    child: FlutterLogo(size: 250),
+),
+```
      
 -------
 
 ## Donation
 
-If you like this package, I'll be happy to receive your generous donations!     
+If you like this package, I'll be happy to receive your generous donations!😃     
 
 <a href="https://www.buymeacoffee.com/amirmsh" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="box-shadow: 0px 1px 9px brown" height="auto" width="200"></a>
-
-<!-- [!["Buy Me A Coffee"](https://cdn.buymeacoffee.com/buttons/default-orange.png)](https://www.buymeacoffee.com/amirmsh) -->
