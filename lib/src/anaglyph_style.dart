@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:anaglyph/src/anaglyph_style_data.dart';
 
@@ -21,5 +22,11 @@ class AnaglyphStyle extends InheritedWidget {
   @override
   bool updateShouldNotify(AnaglyphStyle oldWidget) {
     return data != oldWidget.data;
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty<AnaglyphStyleData>('data', data));
   }
 }

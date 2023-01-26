@@ -39,8 +39,6 @@ class AnaglyphView extends StatelessWidget {
         AnaglyphStyle.of(context)?.data.clipOuters ??
         kDefaultClipOuters;
 
-    // if (depth == 0.0) return child;
-
     return AnaglyphViewRenderObject(
       key: super.key,
       stereoPairStyle: stereoPairStyleData,
@@ -54,19 +52,11 @@ class AnaglyphView extends StatelessWidget {
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties.add(
-      DiagnosticsProperty<AnaglyphStereoPairStyle>(
-        'stereoPairStyle',
-        stereoPairStyle,
-      ),
-    );
-    properties.add(
-      DiagnosticsProperty<FilterQuality>(
-        'filterQuality',
-        filterQuality,
-      ),
-    );
-    properties.add(DiagnosticsProperty<double>('depth', depth));
-    properties.add(DiagnosticsProperty<bool>('clipOuters', clipOuters));
+
+    properties
+      ..add(DiagnosticsProperty('stereoPairStyle', stereoPairStyle))
+      ..add(EnumProperty<FilterQuality>('filterQuality', filterQuality))
+      ..add(DoubleProperty('depth', depth))
+      ..add(DiagnosticsProperty<bool>('clipOuters', clipOuters));
   }
 }

@@ -1,5 +1,4 @@
 import 'package:anaglyph/anaglyph.dart';
-import 'package:anaglyph/src/anaglyph_style_data_tween.dart';
 import 'package:anaglyph/src/constants.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -29,25 +28,28 @@ class AnimatedAnaglyphStyle extends ImplicitlyAnimatedWidget {
   final Widget child;
 
   @override
-  AnimatedWidgetBaseState<AnimatedAnaglyphStyle> createState() =>
-      _AnimatedThemeState();
+  AnimatedWidgetBaseState<AnimatedAnaglyphStyle> createState() {
+    return _AnimatedThemeState();
+  }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty<AnaglyphStyleData>('data', data));
     properties.add(DiagnosticsProperty<Duration>('duration', duration));
     properties.add(DiagnosticsProperty<Curve>('curve', curve));
+    properties.add(DiagnosticsProperty<VoidCallback?>('onEnd', onEnd));
   }
 }
 
 class _AnimatedThemeState
     extends AnimatedWidgetBaseState<AnimatedAnaglyphStyle> {
-  AnaglyphStyleDataTween? _data;
+  AnaglyphStyleDataTween? _dataTween;
 
   @override
   void forEachTween(TweenVisitor<dynamic> visitor) {
-    _data = visitor(
-      _data,
+    _dataTween = visitor(
+      _dataTween,
       widget.data,
       (dynamic value) => AnaglyphStyleDataTween(
         begin: value as AnaglyphStyleData,
@@ -58,7 +60,7 @@ class _AnimatedThemeState
   @override
   Widget build(BuildContext context) {
     return AnaglyphStyle(
-      data: _data!.evaluate(animation),
+      data: _dataTween!.evaluate(animation),
       child: widget.child,
     );
   }
@@ -67,12 +69,7 @@ class _AnimatedThemeState
   void debugFillProperties(DiagnosticPropertiesBuilder description) {
     super.debugFillProperties(description);
     description.add(
-      DiagnosticsProperty<AnaglyphStyleDataTween>(
-        'data',
-        _data,
-        showName: false,
-        defaultValue: null,
-      ),
+      DiagnosticsProperty<AnaglyphStyleDataTween>('_dataTween', _dataTween),
     );
   }
 }

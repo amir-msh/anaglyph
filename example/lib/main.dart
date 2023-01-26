@@ -19,7 +19,7 @@ class App extends StatelessWidget {
     return MaterialApp(
       title: 'َAnaglyph Example',
       theme: ThemeData(
-        scaffoldBackgroundColor: Colors.grey[900],
+        scaffoldBackgroundColor: Colors.grey[100],
         primarySwatch: Colors.grey,
       ),
       home: AnimatedAnaglyphStyle(
@@ -70,7 +70,6 @@ class _HomePageState extends State<HomePage> {
                     child: Image.asset(
                       'assets/images/$i.png',
                       fit: BoxFit.contain,
-                      alignment: Alignment.center,
                     ),
                   ),
                 );

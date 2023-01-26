@@ -43,11 +43,12 @@ class AnaglyphViewRenderObject extends SingleChildRenderObjectWidget {
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
+
     properties
-      ..add(StringProperty('stereoPairStyle', stereoPairStyle.toString()))
+      ..add(DiagnosticsProperty('stereoPairStyle', stereoPairStyle))
       ..add(EnumProperty<FilterQuality>('filterQuality', filterQuality))
       ..add(DoubleProperty('depth', depth))
-      ..add(StringProperty('clipOuters', clipOuters.toString()));
+      ..add(DiagnosticsProperty<bool>('clipOuters', clipOuters));
   }
 }
 
@@ -90,6 +91,7 @@ class RenderAnaglyphView extends RenderProxyBox {
 
   @override
   void paint(context, offset) {
+    const antialiase = false;
     final halfDepth = _anaglyphDepth / 2;
     final offsetChange =
         _clipOuters ? Offset(-halfDepth, 0) : Offset(halfDepth, 0);
@@ -97,7 +99,7 @@ class RenderAnaglyphView extends RenderProxyBox {
     context.canvas.saveLayer(
       (offset - offsetChange) & size,
       Paint()
-        ..isAntiAlias = false
+        ..isAntiAlias = antialiase
         ..colorFilter = _stereoPairStyle.leftChannel.colorFilter
         ..filterQuality = _filterQuality,
     );
@@ -108,7 +110,7 @@ class RenderAnaglyphView extends RenderProxyBox {
     context.canvas.saveLayer(
       (offset + offsetChange) & size,
       Paint()
-        ..isAntiAlias = false
+        ..isAntiAlias = antialiase
         ..blendMode = BlendMode.plus
         ..color = Colors.white
         ..colorFilter = _stereoPairStyle.rightChannel.colorFilter

@@ -85,6 +85,11 @@ class AnaglyphStyleData {
       clipOuters,
     );
   }
+
+  @override
+  String toString() {
+    return "AnaglyphStyleData($stereoPairStyle, $filterQuality, $depth, $clipOuters)";
+  }
 }
 
 /// Stores the data of a stereo channel pair.
@@ -174,6 +179,11 @@ class AnaglyphStereoPairStyle {
       rightChannel,
     );
   }
+
+  @override
+  String toString() {
+    return "AnaglyphStereoPairStyle($leftChannel, $rightChannel)";
+  }
 }
 
 /// Stores the style of a single anaglyph channel
@@ -215,5 +225,10 @@ class AnaglyphStereoChannelStyle {
   @override
   int get hashCode {
     return colorFilter.hashCode;
+  }
+
+  @override
+  String toString() {
+    return "AnaglyphStereoChannelStyle($colorFilter)";
   }
 }
