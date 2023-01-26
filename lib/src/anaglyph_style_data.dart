@@ -118,7 +118,7 @@ class AnaglyphStereoPairStyle {
   ///
   /// It does not remove any color data, so the true color is displayed.
   ///
-  /// In some images that have reddish colors, it causes double vision.
+  /// In some images that have reddish and bluish colors, it causes double vision.
   const AnaglyphStereoPairStyle.trueColor({
     this.leftChannel = trueColorLeftChannelStyle,
     this.rightChannel = trueColorRightChannelStyle,
@@ -126,7 +126,7 @@ class AnaglyphStereoPairStyle {
 
   /// Creates a "half color" stereo pair style.
   ///
-  /// It decreases reddish colors' saturation to reduce double vision.
+  /// It decreases reddish and bluish colors' saturation to reduce double vision.
   const AnaglyphStereoPairStyle.halfColor({
     this.leftChannel = halfColorLeftChannelStyle,
     this.rightChannel = halfColorRightChannelStyle,
