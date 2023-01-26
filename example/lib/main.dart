@@ -19,7 +19,7 @@ class App extends StatelessWidget {
     return MaterialApp(
       title: 'َAnaglyph Example',
       theme: ThemeData(
-        scaffoldBackgroundColor: Colors.grey[100],
+        scaffoldBackgroundColor: Colors.grey[900],
         primarySwatch: Colors.grey,
       ),
       home: AnimatedAnaglyphStyle(
