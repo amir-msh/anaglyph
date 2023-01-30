@@ -54,7 +54,7 @@ AnaglyphView(
 ),
 ```
 
-<img src="https://raw.githubusercontent.com/amir-msh/anaglyph/main/screenshots/nebula-readme-example-min.png" alt="Flutter logo output" height="390" width="auto">
+<img src="https://raw.githubusercontent.com/amir-msh/anaglyph/main/screenshots/nebula-readme-example-min.png" alt="Flutter logo output" height="370" width="auto">
 
 #
 
@@ -68,7 +68,7 @@ AnaglyphView(
 ),
 ```
 
-<img src="https://raw.githubusercontent.com/amir-msh/anaglyph/main/screenshots/flutter-logo-readme-example-min.png" alt="Flutter logo output" height="390" width="auto">
+<img src="https://raw.githubusercontent.com/amir-msh/anaglyph/main/screenshots/flutter-logo-readme-example-min.png" alt="Flutter logo output" height="370" width="auto">
      
 
 ## Donation
