@@ -3,7 +3,11 @@
 
 # Anaglyph Package
 
-Create awesome 3D Flutter applications using the Anaglyph package!
+Create awesome 3D Flutter applications using the Anaglyph package!      
+
+It supports all platforms and works on any kind of color display.      
+
+You can use this package to convert normal 2D widgets to 3D widgets, the 3D effect can be felt using anaglyph glasses. It's a well-priced glass, but you don't even have to buy an anaglyph glass, you can simply create one!      
 
 -------
 
@@ -18,8 +22,16 @@ In other words, the Anaglyph method is an easy and low-cost way to create 3D ima
 ## Features
 
 - Convert any widget to a 3D anaglyph version
+
 - Ability to change the 3D depth
+
 - Changes can be applied with a custom animation
+
+## Caution
+
+This package is currently in the alpha channel and it's not ready for production use.     
+**Don't use it in serious projects until the stable version comes out.**      
+I'm hardly trying to make it stable as soon as possible.      
 
 ## Quick Start Guide
 
@@ -42,7 +54,7 @@ AnaglyphView(
 ),
 ```
 
-<img src="https://raw.githubusercontent.com/amir-msh/anaglyph/main/screenshots/nebula-readme-example-min.png" alt="Flutter logo output" height="300" width="auto">
+<img src="https://raw.githubusercontent.com/amir-msh/anaglyph/main/screenshots/nebula-readme-example-min.png" alt="Flutter logo output" height="390" width="auto">
 
 #
 
@@ -56,11 +68,11 @@ AnaglyphView(
 ),
 ```
 
-<img src="https://raw.githubusercontent.com/amir-msh/anaglyph/main/screenshots/flutter-logo-readme-example-min.png" alt="Flutter logo output" height="300" width="auto">
+<img src="https://raw.githubusercontent.com/amir-msh/anaglyph/main/screenshots/flutter-logo-readme-example-min.png" alt="Flutter logo output" height="390" width="auto">
      
 
 ## Donation
 
 If you like this package, I'll be happy to receive your generous donations!😃     
 
-<a href="https://www.buymeacoffee.com/amirmsh" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="box-shadow: 0px 1px 9px brown; border-radius:10px;" height="auto" width="200"></a>
+<a href="https://www.buymeacoffee.com/amirmsh" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="box-shadow: 0px 1px 9px brown; border-radius:10px;" height="auto" width="210"></a>

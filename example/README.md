@@ -1,3 +1,3 @@
-# example
+## example
 
-A Flutter project that's made to showcase the `Anaglyph` package
+A Flutter project that's built to showcase the `Anaglyph` package
