@@ -70,13 +70,10 @@ class _HomePageState extends State<HomePage> {
               controller: _pageController,
               itemCount: 5,
               itemBuilder: (context, i) {
-                return FittedBox(
-                  fit: BoxFit.contain,
-                  child: AnaglyphView(
-                    child: Image.asset(
-                      'assets/images/$i.png',
-                      fit: BoxFit.contain,
-                    ),
+                return AnaglyphView(
+                  child: Image.asset(
+                    'assets/images/$i.png',
+                    fit: BoxFit.contain,
                   ),
                 );
               },
