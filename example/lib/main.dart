@@ -70,10 +70,12 @@ class _HomePageState extends State<HomePage> {
               controller: _pageController,
               itemCount: 5,
               itemBuilder: (context, i) {
-                return AnaglyphView(
-                  child: Image.asset(
-                    'assets/images/$i.png',
-                    fit: BoxFit.contain,
+                return Center(
+                  child: AnaglyphView(
+                    child: Image.asset(
+                      'assets/images/$i.png',
+                      fit: BoxFit.contain,
+                    ),
                   ),
                 );
               },
