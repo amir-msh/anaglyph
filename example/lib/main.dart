@@ -33,7 +33,7 @@ class _AppState extends State<App> {
         curve: Curves.easeOutCubic,
         data: AnaglyphStyleData(
           clipOuters: true,
-          depth: (hasNegativeDepth ? -1 : 1) * 9,
+          depth: (hasNegativeDepth ? -1 : 1) * 7,
         ),
         child: const HomePage(),
       ),
