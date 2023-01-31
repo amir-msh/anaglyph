@@ -1,18 +1,18 @@
-import 'dart:io' show Platform;
 import 'package:flutter/material.dart';
 import 'package:anaglyph/anaglyph.dart';
 import 'package:example/components/arrow_button.dart';
 
-bool get isDesktop =>
-    Platform.isLinux ||
-    Platform.isFuchsia ||
-    Platform.isWindows ||
-    Platform.isMacOS;
-
 void main() => runApp(const App());
 
-class App extends StatelessWidget {
+class App extends StatefulWidget {
   const App({super.key});
+
+  @override
+  State<App> createState() => _AppState();
+}
+
+class _AppState extends State<App> {
+  bool hasNegativeDepth = true;
 
   @override
   Widget build(BuildContext context) {
@@ -22,12 +22,18 @@ class App extends StatelessWidget {
         scaffoldBackgroundColor: Colors.grey[900],
         primarySwatch: Colors.grey,
       ),
+      builder: (context, child) {
+        return GestureDetector(
+          onTap: () => setState(() => hasNegativeDepth = !hasNegativeDepth),
+          child: child,
+        );
+      },
       home: AnimatedAnaglyphStyle(
         duration: const Duration(milliseconds: 900),
         curve: Curves.easeOutCubic,
         data: AnaglyphStyleData(
           clipOuters: true,
-          depth: isDesktop ? -8 : -12,
+          depth: (hasNegativeDepth ? -1 : 1) * 9,
         ),
         child: const HomePage(),
       ),
@@ -44,7 +50,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final _pageController = PageController();
-  static const _pageAnimationDuration = Duration(milliseconds: 666);
+  static const _pageAnimationDuration = Duration(milliseconds: 600);
   static const _pageAnimationCurve = Curves.decelerate;
 
   @override
@@ -76,7 +82,7 @@ class _HomePageState extends State<HomePage> {
               },
             ),
           ),
-          if (isDesktop) ...[
+          if (MediaQuery.of(context).size.aspectRatio > 1.2) ...[
             ArrowButton(
               direction: ArrowDirection.left,
               onPressed: () {
@@ -95,7 +101,7 @@ class _HomePageState extends State<HomePage> {
                 );
               },
             ),
-          ],
+          ]
         ],
       ),
     );
