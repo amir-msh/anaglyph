@@ -33,6 +33,8 @@ This package is currently in the alpha channel and it's not ready for production
 **Don't use it in serious projects until the stable version comes out.**      
 I'm hardly trying to make it stable as soon as possible.      
 
+**This package usually has the best results on images.**
+
 ## Quick Start Guide
 
 - Use `AnaglyphView` to create a 3D appearance.      
