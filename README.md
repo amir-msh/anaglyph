@@ -60,7 +60,7 @@ AnaglyphView(
 
 <img src="https://raw.githubusercontent.com/amir-msh/anaglyph/main/screenshots/nebula-readme-example-min.png" alt="Flutter logo output" height="370" width="auto">
 
-#
+### Pay attention!
 
 If you want to wrap the widgets that have a transparent background (e.g., Text, Icon, FlutterLogo) in `AnaglyphView`, make sure `clipOuters` is false :
 
