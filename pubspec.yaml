@@ -1,5 +1,5 @@
 name: anaglyph
-description: A Flutter package made to help you create 3D apps as easy as possible!
+description: A Flutter package that makes it simple and effortless for developers to create 3D applications using the anaglyph method.
 version: 0.0.1-alpha.2
 homepage: https://github.com/amir-msh/anaglyph
 repository: https://github.com/amir-msh/anaglyph
