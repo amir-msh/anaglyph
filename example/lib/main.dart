@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:anaglyph/anaglyph.dart';
+import 'package:example/components/custom_scroll_behavior.dart';
+import 'package:example/multi_widget.dart';
 import 'package:example/components/arrow_button.dart';
 
-void main() => runApp(const App());
+void main() {
+  runApp(const App());
+}
 
 class App extends StatefulWidget {
   const App({super.key});
@@ -17,6 +22,7 @@ class _AppState extends State<App> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      scrollBehavior: const CustomScrollBehavior(),
       title: 'َAnaglyph Example',
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.grey[900],
@@ -54,6 +60,18 @@ class _HomePageState extends State<HomePage> {
   static const _pageAnimationCurve = Curves.decelerate;
 
   @override
+  void initState() {
+    SystemChrome.setSystemUIOverlayStyle(
+      const SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        statusBarBrightness: Brightness.light,
+        systemNavigationBarDividerColor: Colors.black87,
+      ),
+    );
+    super.initState();
+  }
+
+  @override
   void dispose() {
     _pageController.dispose();
     super.dispose();
@@ -70,12 +88,10 @@ class _HomePageState extends State<HomePage> {
               controller: _pageController,
               itemCount: 5,
               itemBuilder: (context, i) {
-                return Center(
-                  child: AnaglyphView(
-                    child: Image.asset(
-                      'assets/images/$i.png',
-                      fit: BoxFit.contain,
-                    ),
+                return AnaglyphView(
+                  child: Image.asset(
+                    'assets/images/$i.png',
+                    fit: BoxFit.contain,
                   ),
                 );
               },
@@ -100,7 +116,31 @@ class _HomePageState extends State<HomePage> {
                 );
               },
             ),
-          ]
+          ],
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: SafeArea(
+              top: true,
+              left: true,
+              child: Padding(
+                padding: const EdgeInsets.all(10),
+                child: AnaglyphView(
+                  depth: -1,
+                  clipOuters: false,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const MultiWidgetExample(),
+                        ),
+                      );
+                    },
+                    child: const Text('Multi-Widget Example'),
+                  ),
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );

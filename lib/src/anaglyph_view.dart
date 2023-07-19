@@ -4,9 +4,50 @@ import 'package:anaglyph/src/constants.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+/// Adds 3D anaglyph effect to its child
+///
+/// ## Dynamic Size
+/// By increasing the `depth` in both positive or negative directions, the size of the
+/// canvas increases by `depth.abs()/2`, but the size of [AnaglyphView] widget does
+/// not change. If you want the size of the [AnaglyphView] widget match the size of canvas,
+/// you can write a widget as shown below :
+///
+/// ```dart
+/// class SizedAnaglyphView extends StatelessWidget {
+///   final Widget child;
+///   final double? depth;
+///   static const double defaultDepth = -3;
+///
+///   const SizedAnaglyphView({
+///     super.key,
+///     required this.child,
+///     this.depth,
+///   });
+///
+///   @override
+///   Widget build(BuildContext context) {
+///     final depthData =
+///         depth ?? AnaglyphStyle.of(context)?.data.depth ?? defaultDepth;
+///     return AnaglyphView(
+///       depth: depthData,
+///       clipOuters: false,
+///       child: Padding(
+///         padding: EdgeInsets.symmetric(
+///           horizontal: depthData.abs() / 2,
+///         ),
+///         child: child,
+///       ),
+///     );
+///   }
+/// }
+/// ```
+///
 class AnaglyphView extends StatelessWidget {
   /// Creates a 3D widget of its child.
+  ///
   /// {@macro anaglyph.styledata.args}
+  ///
+
   const AnaglyphView({
     super.key,
     this.stereoPairStyle,

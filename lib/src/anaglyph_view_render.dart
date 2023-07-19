@@ -96,8 +96,10 @@ class RenderAnaglyphView extends RenderProxyBox {
     final offsetChange =
         _clipOuters ? Offset(-halfDepth, 0) : Offset(halfDepth, 0);
 
+    final canvasSize = size;
+
     context.canvas.saveLayer(
-      (offset - offsetChange) & size,
+      (offset - offsetChange) & canvasSize,
       Paint()
         ..isAntiAlias = antialiase
         ..colorFilter = _stereoPairStyle.leftChannel.colorFilter
@@ -108,7 +110,7 @@ class RenderAnaglyphView extends RenderProxyBox {
     context.canvas.restore();
 
     context.canvas.saveLayer(
-      (offset + offsetChange) & size,
+      (offset + offsetChange) & canvasSize,
       Paint()
         ..isAntiAlias = antialiase
         ..blendMode = BlendMode.plus
@@ -118,6 +120,53 @@ class RenderAnaglyphView extends RenderProxyBox {
     );
 
     super.paint(context, offset + Offset(halfDepth, 0));
+
     context.canvas.restore();
+  }
+
+  @override
+  void performLayout() {
+    if (child != null) {
+      child!.layout(constraints, parentUsesSize: true);
+      final childSize = child!.size;
+      size = constraints.constrain(childSize);
+    } else {
+      size = constraints.biggest;
+    }
+
+    super.performLayout();
+  }
+
+  @override
+  void debugPaintSize(PaintingContext context, Offset offset) {
+    super.debugPaintSize(context, offset);
+    assert(
+      () {
+        final Paint paint;
+        const double strokeWidth = 4;
+        paint = Paint()
+          ..strokeWidth = strokeWidth
+          ..style = PaintingStyle.stroke
+          ..shader = const LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Colors.red,
+              Colors.red,
+              Colors.blue,
+              Colors.blue,
+            ],
+            stops: [0, 0.5, 0.5, 1.0],
+            tileMode: TileMode.repeated,
+          ).createShader(offset & const Size(20, 20));
+
+        context.canvas.drawRect(
+          const EdgeInsets.all(strokeWidth / 2).deflateRect(offset & size),
+          paint,
+        );
+
+        return true;
+      }(),
+    );
   }
 }
