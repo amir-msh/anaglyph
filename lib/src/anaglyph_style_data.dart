@@ -5,14 +5,13 @@ import 'constants.dart';
 /// Stores an anaglyph style
 class AnaglyphStyleData {
   /// {@template anaglyph.styledata.args}
-  /// `stereoPairStyle` : The style of the stereo pair.
+  /// `stereoPairStyle`: The style of the stereo pair.
   ///
-  /// `filterQuality` : The quality of the applied filters on the widget.
+  /// `filterQuality`: The quality of the filters applied to the widget.
   ///
-  /// `dapth` : Determines the 3D dapth.
+  /// `dapth`: Sets the 3D depth.
   ///
-  /// `clipOuters` : Clips the outer parts of the anaglyph widget if true
-  /// (results in a better 3D appearance).
+  /// `clipOuters`: Clips the outer parts of the anaglyph widget if true
   /// {@endtemplate}
   const AnaglyphStyleData({
     this.stereoPairStyle = kDefaultStereoPairStyle,
@@ -43,14 +42,14 @@ class AnaglyphStyleData {
     );
   }
 
-  /// Linearly interpolate between two `AnaglyphStyleData`s.
+  /// - Linearly interpolate between two `AnaglyphStyleData`s.
   ///
-  /// `a` and `b` are the `AnaglyphStyleData` instances you want to
+  /// - `a` and `b` are the `AnaglyphStyleData` instances that you want to
   /// interpolate between.
   ///
-  /// The `t` argument represents position on the timeline.
+  /// - The `t` argument represents the position on the timeline.
   ///
-  /// `depth` is the only value that is accurately interpolated currently.
+  /// - `depth` is the only value that is currently being interpolated accurately.
   static AnaglyphStyleData lerp(
     AnaglyphStyleData a,
     AnaglyphStyleData b,
@@ -108,7 +107,7 @@ class AnaglyphStereoPairStyle {
 
   /// Creates a "mono" stereo pair style.
   ///
-  /// It completely removes the color data, resulting a grayscale image.
+  /// It completely removes the color data, resulting in a grayscale image.
   const AnaglyphStereoPairStyle.mono({
     this.leftChannel = monoLeftChannelStyle,
     this.rightChannel = monoRightChannelStyle,
@@ -192,12 +191,12 @@ class AnaglyphStereoChannelStyle {
   ///
   /// It determines how should an anaglyph channel look.
   ///
-  /// `colorFilter` : The color filter that'll be applied to the channel.
+  /// `colorFilter` : A color filter that will be applied to the channel.
   const AnaglyphStereoChannelStyle({
     required this.colorFilter,
   });
 
-  /// The color filter that'll be applied to the channel.
+  /// The color filter that will be applied to the channel.
   final ColorFilter colorFilter;
 
   /// Linearly interpolate between two `AnaglyphStereoChannelStyle`s.

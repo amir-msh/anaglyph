@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:anaglyph/src/anaglyph_style_data.dart';
 
-/// It sets the default style of the [AnaglyphView] widgets using [InheritedWidget].
+/// It sets the default [AnaglyphStyleData] for subtrees using [InheritedWidget].
 class AnaglyphStyle extends InheritedWidget {
   /// `data` will be set as the default anaglyph style.
   const AnaglyphStyle({
