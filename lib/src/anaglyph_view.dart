@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 /// Adds 3D anaglyph effect to its child
 ///
 /// ## Dynamic Size
+///
 /// By increasing the `depth` in both positive or negative directions, the size of the
 /// canvas increases by `depth.abs()/2`, but the size of [AnaglyphView] widget does
 /// not change. If you want the size of the [AnaglyphView] widget match the size of canvas,

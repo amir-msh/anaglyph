@@ -1,13 +1,13 @@
 ![anaglyph package header](https://user-images.githubusercontent.com/61120718/212234454-8b3105ba-66bc-4bc3-a539-1907417a1cf4.png)
-[The nebula image's credit: NASA, ESA, CSA, and STScI](https://www.nasa.gov/image-feature/goddard/2022/nasa-s-webb-reveals-cosmic-cliffs-glittering-landscape-of-star-birth)
+[Nebula image credits: NASA, ESA, CSA, and STScI](https://www.nasa.gov/image-feature/goddard/2022/nasa-s-webb-reveals-cosmic-cliffs-glittering-landscape-of-star-birth)
 
 # Anaglyph Package
 
-Create awesome 3D Flutter applications using the Anaglyph package!  
+Unlock the power of 3D with the Anaglyph package, and create stunning applications that will leave your users in awe!
 
-It supports all platforms and works on any kind of color display.  
+Experience seamless compatibility across all platforms, as the Anaglyph package effortlessly works its magic on any type of color display.
 
-You can use this package to convert normal 2D widgets to 3D widgets, the 3D effect can be felt using anaglyph glasses. It's a well-priced glass, but you don't even have to buy an anaglyph glass, you can simply create one!  
+With this powerful package, you can effortlessly transform ordinary 2D widgets into immersive 3D experiences that can be enjoyed with anaglyph glasses. And the best part? You don't even have to buy anaglyph glasses - you can make your own in no time!
 
 -------
 
@@ -17,37 +17,26 @@ You can use this package to convert normal 2D widgets to 3D widgets, the 3D effe
 > 
 > [**\- Wikipedia**](https://en.wikipedia.org/wiki/Anaglyph_3D)
 
-In other words, the anaglyph method is an easy and low-cost way to create 3D images. It doesn't require a special type of display! You can use any kind of color screen to view anaglyph images. This is a perfect option for those looking for a simple, low-cost solution to produce 3D images.
+In other words, the anaglyph method is an easy and inexpensive way to create a 3D experience. This is a perfect option for those looking for an easy and inexpensive way to create 3D images.
+
 
 ## Features
 
-- Turn almost any widget into a 3D anaglyph version
+- Turn almost any widget into a stunning 3D anaglyph version easily.   
 
-- Ability to change the 3D depth
+- Adjust the 3D depth to customize the visual experience.
 
-- Changes can be applied with a custom animation
-
-## Caution
-
-This package is currently in the alpha channel and it's not ready for production use.  
-
-**Don't use it in serious projects until the stable version comes out.**  
-
-I'm hardly trying to make it stable as soon as possible.  
-
-**This package usually has the best results on images.**
+- Smoothly apply changes with built-in animations.
 
 ## Quick Start Guide
 
 - Use `AnaglyphView` to create a 3D appearance.  
 
-- Use `AnaglyphStyle` to set anaglyph style for subtrees.  
+- Use `AnaglyphStyle` to set a default anaglyph style for subtrees.  
 
 - Use `AnimatedAnaglyphStyle` to apply anaglyph style changes with a custom animation.  
 
 ## Basic Usage
-
-You can use any other widget instead of `Image.network`, but those widgets that contain no color but black, can't become 3D!
 
 ```dart
 AnaglyphView(
@@ -60,9 +49,11 @@ AnaglyphView(
 
 <img src="https://raw.githubusercontent.com/amir-msh/anaglyph/main/screenshots/nebula-readme-example-min.png" alt="Flutter logo output" height="370" width="auto">
 
-### Pay attention!
+### Special Scenarios
 
-If you want to wrap the widgets that have a transparent background (e.g., Text, Icon, FlutterLogo) in `AnaglyphView`, make sure `clipOuters` is false :
+#### Transparent Background
+
+If you want to wrap the widgets that have a transparent background (e.g. Text, Icon, FlutterLogo) in `AnaglyphView`, make sure that `clipOuters` is false:
 
 ```dart
 AnaglyphView(
@@ -76,6 +67,6 @@ AnaglyphView(
 
 ## Donation
 
-If you like this package, I'll be happy to receive your generous donations!😃  
+If you like this package, I'd appreciate your generous donations!😃  
 
 <a href="https://www.buymeacoffee.com/amirmsh" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="box-shadow: 0px 1px 9px brown;" height="auto" width="210"></a>
