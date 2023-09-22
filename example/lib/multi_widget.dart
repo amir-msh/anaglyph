@@ -76,7 +76,7 @@ class _MultiWidgetExampleState extends State<MultiWidgetExample>
                 depth: 3.2,
                 clipOuters: false,
                 child: Image.asset(
-                  'assets/images/photo-1506318137071-a8e063b4bec0.avif',
+                  'assets/images/stars.jpg',
                   // Source: 'https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2093&q=80',
                   fit: BoxFit.cover,
                 ),
