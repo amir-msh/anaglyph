@@ -5,7 +5,7 @@ import 'package:anaglyph/anaglyph.dart';
 /// Renders the [AnaglyphView] widget.
 class AnaglyphViewRenderObject extends SingleChildRenderObjectWidget {
   const AnaglyphViewRenderObject({
-    required super.key,
+    super.key,
     required this.stereoPairStyle,
     required this.filterQuality,
     required this.depth,

@@ -91,7 +91,6 @@ class AnaglyphView extends StatelessWidget {
         kDefaultClipOuters;
 
     return AnaglyphViewRenderObject(
-      key: super.key,
       stereoPairStyle: stereoPairStyleData,
       filterQuality: filterQualityData,
       depth: depthData,
